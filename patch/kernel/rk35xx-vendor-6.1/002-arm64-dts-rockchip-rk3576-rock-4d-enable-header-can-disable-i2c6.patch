@@ -8,7 +8,7 @@ header CAN1 signals. Disable i2c6 and switch those header pins to CAN1 so
 the generated Armbian image boots with a usable CAN bus by default.
 ---
 diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-index ce0100d75b6d..db4f26cad7ab 100644
+index ce0100d75b6d..7f8c6a54e77a 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
 @@ -21,6 +21,10 @@
@@ -22,7 +22,7 @@ index ce0100d75b6d..db4f26cad7ab 100644
  
  	/delete-node/ chosen;
  
-@@ -474,6 +478,21 @@
+@@ -474,6 +478,13 @@
  	reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_HIGH>;
  };
  
@@ -33,16 +33,21 @@ index ce0100d75b6d..db4f26cad7ab 100644
 +	status = "okay";
 +};
 +
-+&i2c6 {
+ &sdmmc {
+ 	max-frequency = <200000000>;
+ 	no-sdio;
+@@ -537,7 +548,11 @@
+ };
+ 
+ &i2c6 {
+-	status = "okay";
 +	/*
 +	 * i2c6m3_xfer shares the same header pinmux as can1m1 on ROCK 4D.
 +	 * Disable i2c6 so the header can be dedicated to CAN.
 +	 */
 +	status = "disabled";
-+};
-+
- &sdmmc {
- 	max-frequency = <200000000>;
- 	no-sdio;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c6m3_xfer>;
+ 
 -- 
 2.39.5
