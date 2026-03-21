@@ -1,3 +1,15 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Codex <codex@local>
+Date: Sun, 22 Mar 2026 00:00:00 +0800
+Subject: [PATCH] arm64: dts: rockchip: enable ROCK 4D header CAN1
+
+Expose the ROCK 4D header CAN pins through the default device tree so
+Armbian images boot with CAN support out of the box.
+
+Map the SoC CAN1 controller to the board header, enable the `can1m1`
+pinctrl state, and publish it as Linux `can0` for the common single-bus
+use case.
+---
 diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
 index 73eb64a0ac7f..000000000000 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
@@ -27,3 +39,5 @@ index 73eb64a0ac7f..000000000000 100644
  &sdmmc {
  	max-frequency = <200000000>;
  	no-sdio;
+-- 
+2.39.5
