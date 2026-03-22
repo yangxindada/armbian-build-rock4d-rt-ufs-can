@@ -27,7 +27,7 @@ index ce0100d75b6d..7f8c6a54e77a 100644
  };
  
 +&can1 {
-+	/* Header CAN on PIN_26 (RX) / PIN_28 (TX). */
++	/* Header CAN on PIN_27 (RX) / PIN_28 (TX). */
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&can1m1_pins>;
 +	status = "okay";
