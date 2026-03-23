@@ -1,0 +1,37 @@
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+@@ -22,6 +22,11 @@
+ / {
+ 	model = "Orange Pi 5 Plus";
+ 	compatible = "rockchip,rk3588-orangepi-5-plus", "rockchip,rk3588";
++
++	aliases {
++		can0 = &can0;
++		can1 = &can1;
++	};
+  
+ 	/delete-node/ chosen;
+  
+@@ -381,17 +386,18 @@
+ &avsd {
+ 	status = "okay";
+ };
+- 
++
++/* 40-pin header CAN0: RX pin 3, TX pin 5. CAN1: RX pin 16, TX pin 18. */
+ &can0 {
+-	status = "disabled";
++	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&can0m0_pins>;
+ 	assigned-clocks = <&cru CLK_CAN0>;
+ 	assigned-clock-rates = <200000000>;
+ };
+- 
++
+ &can1 {
+-	status = "disabled";
++	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&can1m0_pins>;
+ 	assigned-clocks = <&cru CLK_CAN1>;
